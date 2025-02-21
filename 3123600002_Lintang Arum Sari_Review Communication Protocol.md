@@ -5,6 +5,7 @@
    ![image](https://github.com/user-attachments/assets/b24b3c8f-a8ea-4f49-8dc2-e3bd97ae4218)
 3. Lakukan analisis untuk:
     #### a. IP client dan IP server
+   
    ![image](https://github.com/user-attachments/assets/edaa17b4-7760-47a2-8b1d-568919ca18c5)
    - IP client   : `145.245.160.237`
    - IP server   : `65.208.228.223`
@@ -12,25 +13,30 @@
 
 #### b. Versi HTTP
 - Ketik http pada filter package
+  
   ![image](https://github.com/user-attachments/assets/de5f15b4-09e0-4494-95c4-c4be76186f38)
 
 - Versi HTTP terdapat pada kolom info
+  
   ![image](https://github.com/user-attachments/assets/86ae6b67-9db9-460e-8a84-403ce7302996)
   HTTP/1.1 menunjukkan bahwa versi HTTP yang digunakan adalah versi 1.1
 
 #### c. Waktu client mengirim request
 - Klik Flow Graph pada menu Statistics
+  
   ![image](https://github.com/user-attachments/assets/c38da539-2e66-4693-a0e8-fe7e0909b09e)
 
 - Halaman flow graph akan tampil seperti pada gambar berikut:
+  
   ![image](https://github.com/user-attachments/assets/60b74272-07ef-4e17-86f9-bfa678b8c4b0)
 
 - Waktu client mengirim request
+  
   ![image](https://github.com/user-attachments/assets/a4a24062-7716-4703-857f-9b1632ff3d24)
   ![image](https://github.com/user-attachments/assets/58553089-d4cf-4e4c-9bfe-7c9d69e07077)
   Sesuai pada halaman utama dan flow graph, client mengirim request ke server pada detik ke 0.911310
 
-#### d. Waktu server menerima HTTP request dari client
+#### d. Waktu server menerima HTTP request dari client  
 ![image](https://github.com/user-attachments/assets/a0d2cd84-06cf-49fc-ac29-9e1ef7706ac0)
 ![image](https://github.com/user-attachments/assets/1ea0a064-74b0-4b90-ad5e-7f8166d5fb96)
 - Waktu server menerima HTTP request dari client adalah pada detik ke 4.846969
@@ -70,6 +76,7 @@ Protokol yang digunakan pada layer ini adalah protokol TCP dan UDP. Lapisan ini 
 ![image](https://github.com/user-attachments/assets/55a3e742-2e87-4eaf-bf15-89e3db7622d1)
 Transmission Control Protocol (TCP) adalah protokol komunikasi yang memungkinkan pengiriman data yang terjamin dan terurut antar perangkat dalam jaringan. TCP menggunakan tiga tahapan utama untuk mengelola koneksi, yaitu establishment, data transfer, dan termination.
 1. Establishment (Pembentukan Koneksi)
+   
    ![image](https://github.com/user-attachments/assets/35344bd5-e6df-471c-8d60-841d0a442498)
    Tahap ini melibatkan proses yang dikenal sebagai *three-way handshake* untuk membangun koneksi antara dua perangkat (client dan server)
    - Langkah 1: **SYN (Synchronize)**
@@ -80,6 +87,7 @@ Transmission Control Protocol (TCP) adalah protokol komunikasi yang memungkinkan
      - Pengirim mengirimkan ACK sebagai tanda akhir proses handshake, dan koneksi siap digunakan.
 
 2. Data transfer
+   
    ![image](https://github.com/user-attachments/assets/a414b067-f217-4e32-9244-7e713a84d12b)
    Setelah koneksi terbentuk, data dikirim secara berurutan dengan nomor urut (sequence number). TCP memastikan kendala dan pengurutan data melalui mekanisme berikut:
    - Segmentation, data dibagi menjadi segmen-segmen yang dikirim secara terurut.
@@ -88,6 +96,7 @@ Transmission Control Protocol (TCP) adalah protokol komunikasi yang memungkinkan
    - Error Detection and Retransmission, jika segmen hilang atau rusak, TCP akan mengirim ulang segmen tersebut.
 
 3. Termination (Pemutusan Koneksi)
+   
    ![image](https://github.com/user-attachments/assets/1b167456-2222-408a-8e76-29754d906f4c)
    Tahap ini digunakan untuk menutup koneksi TCP dengan aman. Gambar tersebut menunjukkan terminasi koneksi TCP menggunakan *three-way handshake*, yang melibatkan pertukaran segmen antara client dengan server untuk menutup koneksi secara bersih.
    #### FIN dari client (Active Close)
