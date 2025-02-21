@@ -3,9 +3,9 @@
 1. Download file http.cap pada https://wiki.wireshark.org/SampleCaptures
 2. Buka file http.cap menggunakan wireshark, berikut merupakan tampilan awal wireshark:
    ![image](https://github.com/user-attachments/assets/b24b3c8f-a8ea-4f49-8dc2-e3bd97ae4218)
-3. Lakukan analisis untuk:
-    #### a. IP client dan IP server
    
+4. Lakukan analisis untuk:
+    #### a. IP client dan IP server
    ![image](https://github.com/user-attachments/assets/edaa17b4-7760-47a2-8b1d-568919ca18c5)
    - IP client   : `145.245.160.237`
    - IP server   : `65.208.228.223`
@@ -19,6 +19,7 @@
 - Versi HTTP terdapat pada kolom info
   
   ![image](https://github.com/user-attachments/assets/86ae6b67-9db9-460e-8a84-403ce7302996)
+  
   HTTP/1.1 menunjukkan bahwa versi HTTP yang digunakan adalah versi 1.1
 
 #### c. Waktu client mengirim request
@@ -34,6 +35,7 @@
   
   ![image](https://github.com/user-attachments/assets/a4a24062-7716-4703-857f-9b1632ff3d24)
   ![image](https://github.com/user-attachments/assets/58553089-d4cf-4e4c-9bfe-7c9d69e07077)
+  
   Sesuai pada halaman utama dan flow graph, client mengirim request ke server pada detik ke 0.911310
 
 #### d. Waktu server menerima HTTP request dari client  
@@ -48,7 +50,8 @@
   ```
 
 ### B. Analisis Communication Protocol
-![image](https://github.com/user-attachments/assets/e71cf8b0-1ac1-4d8e-8690-a75c50074677)
+![image](https://github.com/user-attachments/assets/e71cf8b0-1ac1-4d8e-8690-a75c50074677)  
+
 Gambar tersebut menggambarkan jenis-jenis pengiriman data dalam model komunikasi jaringan yang berkaitan dengan lapisan-lapisan dalam model OSI (Opens System Interconnection).
 Berikut merupakan komponen yang terdapat pada gambar:
 #### 1. Process
@@ -73,11 +76,13 @@ Protokol yang digunakan pada layer ini adalah protokol TCP dan UDP. Lapisan ini 
 - d.	Melakukan looping terhadap proses transmisi yang ada dalam paket data yang hilang.
 
 ### C. Resume TCP
-![image](https://github.com/user-attachments/assets/55a3e742-2e87-4eaf-bf15-89e3db7622d1)
+![image](https://github.com/user-attachments/assets/55a3e742-2e87-4eaf-bf15-89e3db7622d1)  
+
 Transmission Control Protocol (TCP) adalah protokol komunikasi yang memungkinkan pengiriman data yang terjamin dan terurut antar perangkat dalam jaringan. TCP menggunakan tiga tahapan utama untuk mengelola koneksi, yaitu establishment, data transfer, dan termination.
 1. Establishment (Pembentukan Koneksi)
    
    ![image](https://github.com/user-attachments/assets/35344bd5-e6df-471c-8d60-841d0a442498)
+   
    Tahap ini melibatkan proses yang dikenal sebagai *three-way handshake* untuk membangun koneksi antara dua perangkat (client dan server)
    - Langkah 1: **SYN (Synchronize)**
      - Pengirim mengirimkan pesan SYN ke penerima untuk memulai koneksi.
@@ -86,18 +91,20 @@ Transmission Control Protocol (TCP) adalah protokol komunikasi yang memungkinkan
    - Langkah 3: **ACK (Acknowledge)**
      - Pengirim mengirimkan ACK sebagai tanda akhir proses handshake, dan koneksi siap digunakan.
 
-2. Data transfer
+3. Data transfer
    
    ![image](https://github.com/user-attachments/assets/a414b067-f217-4e32-9244-7e713a84d12b)
+   
    Setelah koneksi terbentuk, data dikirim secara berurutan dengan nomor urut (sequence number). TCP memastikan kendala dan pengurutan data melalui mekanisme berikut:
    - Segmentation, data dibagi menjadi segmen-segmen yang dikirim secara terurut.
    - Acknowledgement, penerima mengirimkan ACK untuk setiap segmen yang berhasil diterima.
    - Flow Control, TCP mengontrol aliran data untuk memastikan pengiriman berjalan efisien dan tidak membebani jaringan.
    - Error Detection and Retransmission, jika segmen hilang atau rusak, TCP akan mengirim ulang segmen tersebut.
 
-3. Termination (Pemutusan Koneksi)
+5. Termination (Pemutusan Koneksi)
    
    ![image](https://github.com/user-attachments/assets/1b167456-2222-408a-8e76-29754d906f4c)
+   
    Tahap ini digunakan untuk menutup koneksi TCP dengan aman. Gambar tersebut menunjukkan terminasi koneksi TCP menggunakan *three-way handshake*, yang melibatkan pertukaran segmen antara client dengan server untuk menutup koneksi secara bersih.
    #### FIN dari client (Active Close)
    - Client yang ingin mengakhiri koneksi mengirim segmen dengan:
