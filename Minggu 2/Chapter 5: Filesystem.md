@@ -1,4 +1,4 @@
-# Ringkasan Chapter 5: the filesystem 
+# Chapter 5: the filesystem 
 
 Sistem berkas adalah komponen utama dalam sistem operasi yang berfungsi untuk mengorganisir dan mengelola penyimpanan data. Sistem ini terdiri dari namespace, API, model keamanan, dan implementasi perangkat lunak yang menghubungkan struktur logis ke perangkat keras.
 
