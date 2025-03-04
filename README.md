@@ -10,3 +10,5 @@ This repository contains a collection of assignments for **Network Administratio
 
 ---
 
+-  [Minggu 1](https://github.com/lintangaroem/AdminJaringan2025/tree/main/Minggu%201)
+-  [Minggu 2](https://github.com/lintangaroem/AdminJaringan2025/tree/main/Minggu%202)
