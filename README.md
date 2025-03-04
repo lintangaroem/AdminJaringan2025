@@ -1,5 +1,5 @@
-**Mata Kuliah:** Workshop Administrasi Jaringan  
-**Dosen Pengampu:** Ferry Astika Saputra, S.T., M.Sc.  
+**Course:** Network Administration Workshop  
+**Instructor:** Ferry Astika Saputra, S.T., M.Sc.  
 
 | **Nama**   | Lintang Arum Sari |
 ------------|-----------|
