@@ -1,64 +1,48 @@
-## Chapter 4: Process Control
-### Komponen Proses dalam Sistem Operasi
-Sebuah proses terdiri dari ruang alamat dan kumpulan struktur data dalam kernel. Ruang alamat adalah serangkaian halaman memori yang telah ditandai oleh kernel untuk digunakan oleh proses tersebut. Halaman-halaman ini digunakan untuk menyimpan kode, data, dan stack dari proses. Biasanya, ukuran halaman adalah 4KiB atau 8KiB.
+# Chapter 4: Process Control
 
-Di dalam kernel, ada struktur data yang mencatat berbagai informasi mengenai proses, seperti:
-- Peta ruang alamat proses - Menunjukkan lokasi memori yang digunakan oleh proses.
-- Status proses – Apakah proses sedang berjalan, tidur, atau dalam keadaan lain.
-- Prioritas proses – Seberapa penting proses ini dibandingkan dengan proses lain.
-- Penggunaan sumber daya – Seperti penggunaan CPU, memori, dan lainnya.
-- Informasi tentang file dan port jaringan yang dibuka – File atau port yang sedang digunakan oleh proses.
-- Masker sinyal proses – Daftar sinyal yang sedang diblokir oleh proses.
-- Pemilik proses - User ID dari pengguna yang menjalankan proses.
+## Kontrol Proses
+Komponen dari Proses
+Sebuah proses terdiri dari ruang alamat dan sekumpulan struktur data dalam kernel. Ruang alamat adalah sekumpulan halaman memori yang telah ditandai oleh kernel untuk digunakan oleh proses. (Halaman adalah unit di mana memori dikelola, biasanya berukuran 4KiB atau 8KiB.) Halaman-halaman ini digunakan untuk menyimpan kode, data, dan tumpukan proses. Struktur data dalam kernel melacak status proses, prioritas, parameter penjadwalan, dan informasi lainnya.
 
-Proses bisa dianggap sebagai wadah yang berisi sumber daya yang dikelola oleh kernel untuk menjalankan sebuah program. Sumber daya tersebut meliputi halaman memori untuk kode dan data program, deskriptor file yang mengacu pada file yang dibuka, dan atribut yang menggambarkan status proses.
+Pemikiran tentang Proses
+Pikirkan proses sebagai wadah untuk sekumpulan sumber daya yang dikelola oleh kernel atas nama program yang sedang berjalan. Sumber daya ini termasuk halaman memori yang menyimpan kode dan data program, deskriptor file yang merujuk ke file yang terbuka, dan berbagai atribut yang menggambarkan status proses.
 
-Thread adalah konteks eksekusi dalam sebuah proses. Sebuah proses bisa memiliki banyak thread yang berbagi ruang alamat dan sumber daya lainnya. Thread digunakan untuk mencapai paralelisme dalam sebuah proses. Thread juga disebut sebagai lightweight processes karena lebih murah untuk dibuat dan dihancurkan dibandingkan dengan proses.
+Struktur Data Internal Kernel
+Struktur data internal kernel mencatat berbagai informasi tentang setiap proses:
 
-Sebagai contoh, bayangkan sebuah web server. Server ini mendengarkan permintaan masuk dan kemudian membuat thread baru untuk menangani setiap permintaan tersebut. Setiap thread menangani satu permintaan, namun server secara keseluruhan bisa menangani banyak permintaan secara bersamaan karena memiliki banyak thread. Di sini, web server adalah proses, dan setiap thread adalah konteks eksekusi terpisah dalam proses tersebut.
+Peta ruang alamat proses
+Status saat ini dari proses (berjalan, tidur, dan sebagainya)
+Prioritas proses
+Informasi tentang sumber daya yang telah digunakan oleh proses (CPU, memori, dan sebagainya)
+Informasi tentang file dan port jaringan yang telah dibuka oleh proses
+Mask sinyal proses (set sinyal yang saat ini diblokir)
+Pemilik proses (ID pengguna dari pengguna yang memulai proses)
+Thread dalam Proses
+Sebuah "thread" adalah konteks eksekusi dalam sebuah proses. Sebuah proses dapat memiliki beberapa thread, yang semuanya berbagi ruang alamat dan sumber daya yang sama. Thread digunakan untuk mencapai paralelisme dalam sebuah proses dan dikenal sebagai proses ringan karena lebih murah untuk dibuat dan dihancurkan dibandingkan proses.
 
-### PID: Nomor ID Proses / Process ID
-Setiap proses memiliki PID (Process ID), yaitu nomor unik yang diberikan oleh kernel saat proses dibuat. PID digunakan untuk merujuk proses dalam berbagai perintah sistem, seperti mengirim sinyal.
+Contoh: Server Web
+Sebagai contoh untuk memahami konsep proses dan thread, pertimbangkan sebuah server web. Server web mendengarkan koneksi yang masuk dan kemudian membuat thread baru untuk menangani setiap permintaan yang masuk. Setiap thread menangani satu permintaan pada satu waktu, tetapi server web secara keseluruhan dapat menangani banyak permintaan secara bersamaan karena memiliki banyak thread.
 
-Konsep namespaces memungkinkan beberapa proses memiliki PID yang sama dalam lingkungan terisolasi yang disebut container. Container memungkinkan menjalankan beberapa instance aplikasi secara terpisah di sistem yang sama.
+### 1.  PID: Nomor ID Proses
+Setiap proses diidentifikasi dengan nomor ID proses yang unik, atau PID. PID adalah bilangan bulat yang ditetapkan oleh kernel untuk setiap proses saat proses tersebut dibuat. PID digunakan untuk merujuk ke proses dalam berbagai panggilan sistem, misalnya, untuk mengirim sinyal ke proses.
 
-### PPID: Nomor ID Proses Induk / Parent Process ID
-Setiap proses juga memiliki PPID (Parent Process ID), yaitu nomor ID dari proses induk yang membuatnya. PPID digunakan untuk merujuk ke proses induk dalam berbagai perintah sistem, seperti mengirim sinyal ke proses induk.
+### 2. PPID: Nomor ID Proses Induk
+Setiap proses juga terkait dengan proses induk, yaitu proses yang membuatnya. Nomor ID proses induk, atau PPID, adalah PID dari proses induk. PPID digunakan untuk merujuk ke proses induk dalam berbagai panggilan sistem.
 
-### UID (User ID / ID Pengguna) dan EUID (Effective User ID)
-UID (User ID) adalah ID pengguna yang memulai proses. Sementara itu, EUID (Effective User ID) adalah ID pengguna yang digunakan oleh proses untuk menentukan akses ke sumber daya, seperti file dan port jaringan. EUID mengontrol hak akses proses terhadap sumber daya di sistem.
+### 3. UID dan EUID: ID Pengguna dan ID Pengguna Efektif
+ID pengguna, atau UID, adalah ID pengguna dari pengguna yang memulai proses. ID pengguna efektif, atau EUID, adalah ID pengguna yang digunakan proses untuk menentukan sumber daya apa yang dapat diakses oleh proses.
 
-### Siklus Hidup Proses
-Untuk membuat proses baru, sebuah proses menggunakan perintah fork untuk menyalin dirinya sendiri. Proses baru memiliki PID yang berbeda dan informasi terpisah. Di Linux, fork menggunakan clone, yang lebih canggih dan menangani thread.
+## Siklus Hidup Proses
+Untuk membuat proses baru, sebuah proses menyalin dirinya sendiri dengan panggilan sistem fork. Fork membuat salinan dari proses asli, dan salinan itu sebagian besar identik dengan induknya. Proses baru memiliki PID yang berbeda dan memiliki informasi akuntansi sendiri.
 
-Saat sistem booting, kernel membuat beberapa proses, termasuk init atau systemd yang memiliki PID 1. Proses ini menjalankan skrip startup sistem, dan semua proses lainnya merupakan keturunan dari proses ini.
+### 1. Sinyal
+Sinyal adalah cara untuk mengirim notifikasi ke sebuah proses. Mereka digunakan untuk memberi tahu proses bahwa suatu peristiwa tertentu telah terjadi. Ada sekitar tiga puluh jenis sinyal yang berbeda yang didefinisikan dan digunakan dengan berbagai cara.
 
-### Signals
-Sinyal adalah cara untuk mengirimkan pemberitahuan ke sebuah proses, memberi tahu bahwa suatu peristiwa telah terjadi.
+### 2. Perintah kill: Mengirim Sinyal
+Perintah kill paling sering digunakan untuk menghentikan sebuah proses. Kill dapat mengirim sinyal apa pun, tetapi secara default mengirim TERM. Kill dapat digunakan oleh pengguna biasa pada proses mereka sendiri atau oleh root pada proses mana pun.
 
-Terdapat sekitar tiga puluh jenis sinyal yang didefinisikan dan digunakan dengan berbagai cara:
-1. Antarproses: Sinyal dapat dikirim antarproses untuk komunikasi.
-2. Dari driver terminal: Sinyal dapat dikirim untuk menghentikan, menginterupsi, atau menangguhkan proses saat tombol tertentu ditekan.
-3. Dari administrator: Sinyal dapat dikirim menggunakan perintah kill untuk tujuan tertentu.
-4. Dari kernel: Sinyal dapat dikirim saat proses melakukan kesalahan, seperti pembagian dengan nol.
-5. Dari kernel: Sinyal juga digunakan untuk memberi tahu proses tentang kondisi penting, seperti kematian proses anak atau data yang tersedia pada saluran I/O.
+## Monitoring Proses
+Perintah ps adalah alat utama administrator sistem untuk memantau proses. Ps dapat menunjukkan PID, UID, prioritas, dan terminal kontrol dari proses. Anda dapat memperoleh gambaran berguna tentang sistem dengan menjalankan ps aux.
 
-![image](https://github.com/user-attachments/assets/89153ba8-4a64-41d5-a7ed-6f12dc659217)  
-**Sinyal KILL, INT, TERM, HUP, dan QUIT**
-
-Meskipun nama-nama sinyal ini terdengar seperti memiliki arti yang sama, penggunaan masing-masing sebenarnya sangat berbeda:
-
-1. **KILL**: Sinyal ini tidak bisa diblokir dan menghentikan proses di tingkat kernel. Proses tidak bisa menangani sinyal ini.
-   
-2. **INT**: Dikirim oleh driver terminal saat pengguna menekan tombol **Ctrl+C**. Ini adalah permintaan untuk menghentikan operasi saat ini. Program sederhana seharusnya berhenti (jika menangani sinyal) atau membiarkan dirinya dihentikan, yang merupakan tindakan default jika sinyal tidak ditangani. Program dengan antarmuka perintah interaktif (seperti shell) harus menghentikan proses, membersihkan, dan menunggu input dari pengguna lagi.
-
-3. **TERM**: Permintaan untuk menghentikan eksekusi sepenuhnya. Proses yang menerima sinyal ini diharapkan untuk membersihkan statusnya dan keluar.
-
-4. **HUP**: Dikirim ke proses saat terminal pengendali ditutup. Awalnya digunakan untuk menunjukkan "hang up" pada koneksi telepon, sekarang sering digunakan untuk memberi instruksi pada proses daemon untuk berhenti dan memulai ulang, biasanya untuk memperbarui konfigurasi baru. Perilaku tepatnya tergantung pada proses yang menerima sinyal HUP.
-
-5. **QUIT**: Mirip dengan TERM, tetapi secara default menghasilkan *core dump* jika tidak ditangani. Beberapa program mungkin mengartikan sinyal ini dengan cara yang berbeda.
-
-
-
-
-
+### Proses Berkala
+Daemon cron adalah alat tradisional untuk menjalankan perintah pada jadwal yang telah ditentukan. Ini mulai berjalan saat sistem boot dan berjalan selama sistem aktif.
