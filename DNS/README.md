@@ -1,6 +1,8 @@
 ## DNS: IP Forwarding
 ### Topologi
-// insert image topologi
+<p align="center">
+  <img src="https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/1.jpeg" alt="Gambar DNS" />
+</p>
 
 Topologi ini menunjukkan dua VM yang terhubung lewat jaringan internal. VM 1 bertindak sebagai gateway dengan IP 192.168.200.1 dan terhubung ke internet melalui bridge adapter. VM 2 berperan sebagai client dengan IP 192.168.200.10/24, yang hanya terhubung ke VM 1. Agar VM 2 bisa mengakses internet, VM 1 harus mengaktifkan IP forwarding dan NAT. Singkatnya, semua koneksi dari VM 2 akan lewat VM 1 sebelum ke internet.
 
@@ -10,19 +12,21 @@ Untuk install bind9 gunakan perintah berikut:
 ```bash
 sudo apt install bind9 bind9utils
 ```
-// insert image install bind9
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/2.jpeg)
+
 
 #### 2. Install iptables-persistent
 ```bash
 sudo apt install iptables iptables-persistent
 ```
-// insert image install iptables
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/3.jpeg)
 
 #### 3. Set IP Address
 ```bash
 sudo nano /etc/network/interfaces
 ```
-//insert photo net interfaces
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/4.jpeg)
+
 File konfigurasi yang ditampilkan adalah `/etc/network/interfaces`, yang mengatur pengaturan jaringan pada sistem Linux. Pada konfigurasi ini, terdapat dua interface utama, yaitu `enp0s3` dan `enp0s8`. Interface `enp0s3` berfungsi sebagai koneksi utama ke internet dan disetting menggunakan DHCP, sehingga IP address akan diberikan secara otomatis oleh server jaringan. Sementara itu, interface `enp0s8` digunakan untuk koneksi jaringan internal dan dikonfigurasi secara statis dengan alamat IP `192.168.200.1`, netmask `255.255.255.0`, dan DNS `1.1.1.1`. 
 
 setelah mengonfirgurasi file tersebut, restart network agar perubahan pada /etc/network/interfaces dapat diterapkan.
@@ -36,7 +40,8 @@ Masuk ke file /etc/bind/named.conf.options dengan perintah berikut:
 ```bash
 sudo nano /etc/bind/named.conf.options
 ```
-//insert photo conf.options
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/5.jpeg)
+
 Lakukan penambahan dan perubahan berikut:
 a. Tambahkan internal-network di paling atas file, sebelum options
 ```bash
@@ -89,7 +94,7 @@ zone "kelompok3.com" {
     file "/etc/bind/db.kelompok3";
 };
 ```
-//insert kelompok3.com
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/6.jpeg)
 
 Buat file /etc/bind/db.kelompok3 dengan perintah berikut:
 ```bash
@@ -108,7 +113,7 @@ $TTL    604800
 @       IN      NS      kelompok3.com.
 @       IN      A       192.168.100.1
 ```
-//insert foto db.kelompok3
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/7.jpeg)
 
 Simpan, lalu jalankan validasi:
 ```bash
@@ -129,7 +134,7 @@ sudo ip link set <nama_interface> up
 
 ### VM 2 (Client) Configurations
 Ubah konfigurasi IP Static dari VM 2, dengan masuk ke Wired Settings > IPv4. Lakukan setting berikut:
-//insert konfigurasi jaringan vm2
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/9.jpeg)
 
 - `IPv4 Method` : Manual
 - `Addresses`
@@ -139,4 +144,4 @@ Ubah konfigurasi IP Static dari VM 2, dengan masuk ke Wired Settings > IPv4. Lak
 - `DNS` : 192.168.200.1, 1.1.1.1
 
 Kemudian lakukan ping ke server kelompok3.com
-//insert ping kelompok3.com
+![Alt Text](https://raw.githubusercontent.com/lintangaroem/AdminJaringan2025/main/DNS/img/10.jpeg)
