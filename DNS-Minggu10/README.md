@@ -37,6 +37,7 @@ acl internal-network{
 Kemudian tambahkan forwarders, allow-query, dan allow-transfer:
 ```bash
 forwarders{
+   10.252.108.10
   10.10.10.1
 };
 
