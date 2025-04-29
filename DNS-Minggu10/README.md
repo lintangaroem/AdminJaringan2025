@@ -1,4 +1,4 @@
-## Konfigurasi Topologi Lab C 307 [Kelompok 3]
+## Konfigurasi Topologi dan Mail [Kelompok 3]
 ### Topologi
 
 ### Langkah-Langkah Konfigurasi
@@ -25,7 +25,7 @@ nano /etc/bind/named.conf
 
 lalu tambahkan file `/etc/bind/named.conf.internal-zones`
 
-
+![Named Conf](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/named.conf.jpeg?raw=true)
 
 ##### Edit file /etc/bind/named.conf.options<br>
 Tambahkan `acl internal-network` sebelum options seperti contoh berikut:
@@ -44,22 +44,42 @@ allow-query { localhost; internal-network; };
 
 allow-transfer { localhost; };
 ```
- //image
+![Conf Options 1](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/conf%20options%201.jpeg?raw=true)
+
+![Conf Options 2](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/conf%20options%202.jpeg?raw=true)
+
  
 ##### Cek konfigurasi file named
 Lakukan perintah berikut:
 ```bash
 named-checkconf
 ```
-//image
 
 ##### Cek zone file named
 ```bash
 named-checkzone
 ```
-//image
 
 ##### Tambahkan file kelompok3.home pada /var/cache/bind
+![Homepage Kelompok 3](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/kelompok3.home.jpeg?raw=true)
 
 ##### Cek konektifitas kelompok3.home
-   
+![Hasil Dig kelompok3.home](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/dig%20kelompok3.jpeg?raw=true)
+
+#### D. WWW
+##### Buat file html pada direktori /etc/apache2/
+![Tampilan Webmail](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/mail%20html.jpeg?raw=true)
+
+Buat kode html untuk website kelompok3.home. Untuk mengaksesnya ketikkan `kelompok3.home` atau `192.168.3.10` pada browser.
+![Web Kelompok 3](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/web%20k3.jpeg?raw=true)
+
+Pada server yang sama, kita juga dapat melihat website dari kelompok lain:
+![Web Kelompok 2](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/web%20k2.jpeg?raw=true)
+
+![Web Kelompok 5](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/web%20k5.jpeg?raw=true)
+
+![Web Kelompok 6](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/web%20k6.jpeg?raw=true)
+
+![Web Kelompok 8](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/web%20k8.jpeg?raw=true)
+
+![Web Kelompok 10](https://github.com/lintangaroem/AdminJaringan2025/blob/main/DNS-Minggu10/web%20k10.jpeg?raw=true)
