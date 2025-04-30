@@ -1,4 +1,8 @@
-## Konfigurasi Topologi dan Mail [Kelompok 3]
+## Laporan Praktikum Konfigurasi Topologi dan Mail [Kelompok 3]
+* Lintang Arum Sari (3123600002)
+* Kansa Adeneva Riti Syarani (3123600009)
+* Salma Afifa Aziz (3123600017)
+  
 ### Topologi
 
 ### Langkah-Langkah Konfigurasi
