@@ -1,6 +1,6 @@
 # Mail
-Nama : Lintang Arum Sari 
-NRP  : 3123600002 
+Nama : Lintang Arum Sari  
+NRP  : 3123600002  
 Kelas: 2 D4 IT A 
 
 ## A. Mail Server
