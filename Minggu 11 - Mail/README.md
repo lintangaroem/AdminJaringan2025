@@ -51,7 +51,7 @@ Proses ini memastikan bahwa email dikirim dengan format yang benar dan diterima 
 POP3 aalah protokol email yang digunakan oleh email client untuk mengakses dan mengunduh email dari server ke komputer lokal. Ketika menggunakan protokol ini, email client akan mengunduh semua email dari kotak masuk di server ke komputer, kemudian menghapus email tersebut dari server (secara default), sehingga email hanya akan tersedia secara lokal. Karena sudah terhapus di server, kita tidak dapat mengaksesnya dari perangkat lain (kecuali pengaturannya diubah agar email tetap tersimpan di server). Karena email sudah diunduh, maka kita bisa mengaksesnya secara offline. Saat ini, aplikasi email modern menyediakan opsi untuk tetap menyimpan salinan email di server, meskipun menggunakan POP3.
 
 ### 3. IMAP (Internet Message Access Protocol)
-![POP3 Process](https://github.com/lintangaroem/AdminJaringan2025/blob/main/Minggu%2011%20-%20Mail/img/imap%20process.png?raw=true)
+![IMAP Process](https://github.com/lintangaroem/AdminJaringan2025/blob/main/Minggu%2011%20-%20Mail/img/imap%20process.png?raw=true)
 
 IMAP adalah protokol email yang memungkinkan user untuk mengakses, membaca, dan mengelola email secara langsung di server, tanpa harus mengunduh semuanya ke perangkat. Dengan protokol ini, user dapat membuat dan mengatur folder-folder email (seperti inbox, spam, draft, dll), menghapus email secara permanen dari server, serta melakukan pencarian cepat dalam kotak masuk, karena semuanya masih tersimpan di server.
 
@@ -79,6 +79,7 @@ Sumber: [Introduction to Electronic Mail](https://www.geeksforgeeks.org/introduc
 Email (electronic mail) adalah cara bertukar pesan melalui jaringan komputer, terutama internet. Email dapat berisi teks, gambar, audio, dan video, dan merupakan sarana komunikasi digital yang cepat dan efisien.
 
 ### 2. Komponen Utama Sistem Email
+![Email Process](https://github.com/lintangaroem/AdminJaringan2025/blob/main/Minggu%2011%20-%20Mail/img/email%20process.png?raw=true)
 - Alamat Email: Identitas unik pengguna, biasanya dalam format user@domain.com.
 - Email Client (User Agent): Aplikasi yang digunakan untuk mengirim, menerima, dan membaca email (contoh: Gmail, Outlook).
 - Mail Server (Message Transfer Agent / MTA): Server yang menangani proses pengiriman dan penerimaan email.
