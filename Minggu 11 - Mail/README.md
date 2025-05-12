@@ -1,7 +1,7 @@
 # Mail
-Nama : Lintang Arum Sari
-NRP  : 3123600002
-Kelas: 2 D4 IT A
+Nama : Lintang Arum Sari 
+NRP  : 3123600002 
+Kelas: 2 D4 IT A 
 
 ## A. Mail Server
 Mail server adalah server khusus yang menangani proses pengiriman, penerimaan, dan penyimpanan email dalam suatu doamin (misalnya: `@example.com`). Setiap doman yang digunakan untuk email harus memiliki konfigurasi DNS agar email dapat dikirim dan diterima dengan benar.
